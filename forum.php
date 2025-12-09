@@ -16,6 +16,7 @@ require __DIR__ . '/config/db.php';
     <div class="liquid-element"></div>
     <div class="liquid-element"></div>
 
+    <!-- ХЕДЕР КАК В index.php -->
     <header>
         <div class="container header-container" data-aos="fade-down">
             <div class="logo">
@@ -36,6 +37,7 @@ require __DIR__ . '/config/db.php';
             </nav>
             <div class="header-actions">
                 <?php if (!empty($_SESSION['user_id'])): ?>
+                    <!-- Пользователь авторизован: кнопки остаются в DOM для стилей/JS, но скрыты -->
                     <button class="btn btn-outline" id="loginBtn" style="display: none;">
                         <i class="fas fa-sign-in-alt"></i> Вход
                     </button>
@@ -57,6 +59,7 @@ require __DIR__ . '/config/db.php';
                         <span><?= htmlspecialchars($_SESSION['username'] ?? 'Пользователь') ?></span>
                     </div>
                 <?php else: ?>
+                    <!-- Гость: показываем кнопки как раньше, user-menu спрятан -->
                     <button class="btn btn-outline" id="loginBtn">
                         <i class="fas fa-sign-in-alt"></i> Вход
                     </button>
@@ -74,6 +77,7 @@ require __DIR__ . '/config/db.php';
         </div>
     </header>
 
+    <!-- ДАЛЬШЕ ТВОЙ КОНТЕНТ СТРАНИЦЫ ФОРУМА -->
     <main class="container">
         <div class="page-header" data-aos="fade-up">
             <div>
@@ -88,137 +92,10 @@ require __DIR__ . '/config/db.php';
             </button>
         </div>
 
-        <div class="layout">
-            <div class="content">
-                <div class="filters" data-aos="fade-up" data-aos-delay="100">
-                    <div class="filter-group">
-                        <span class="filter-label">Сортировка:</span>
-                        <select class="filter-select">
-                            <option>Сначала новые</option>
-                            <option>Сначала старые</option>
-                            <option>Сначала популярные</option>
-                        </select>
-                    </div>
-                    <div class="search-box">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" placeholder="Поиск по темам...">
-                    </div>
-                </div>
-
-                <div class="threads-container">
-                    <div class="thread-card" data-aos="fade-up" data-aos-delay="0">
-                        <div class="thread-header">
-                            <div class="thread-info">
-                                <h2 class="thread-title">Общие вопросы по сборке ПК</h2>
-                                <div class="thread-meta">
-                                    <span class="thread-author">Admin</span>
-                                    <span class="thread-date">01.04.2023</span>
-                                    <span class="thread-category">Общие вопросы</span>
-                                </div>
-                            </div>
-                            <div class="thread-stats">
-                                <div class="stat">
-                                    <div class="stat-value">120</div>
-                                    <div class="stat-label">Тем</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-value">2.4K</div>
-                                    <div class="stat-label">Сообщений</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thread-preview">
-                            <p>Обсуждение сборок, совместимости комплектующих, подбор конфигураций под разные задачи.</p>
-                        </div>
-                    </div>
-
-                    <div class="thread-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="thread-header">
-                            <div class="thread-info">
-                                <h2 class="thread-title">Разгон и оптимизация</h2>
-                                <div class="thread-meta">
-                                    <span class="thread-author">OC_Master</span>
-                                    <span class="thread-date">05.04.2023</span>
-                                    <span class="thread-category">Разгон</span>
-                                </div>
-                            </div>
-                            <div class="thread-stats">
-                                <div class="stat">
-                                    <div class="stat-value">89</div>
-                                    <div class="stat-label">Тем</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-value">1.1K</div>
-                                    <div class="stat-label">Сообщений</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thread-preview">
-                            <p>Обсуждение разгона процессоров, видеокарт, оперативной памяти, настройка BIOS и тестирование стабильности.</p>
-                        </div>
-                    </div>
-
-                    <div class="thread-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="thread-header">
-                            <div class="thread-info">
-                                <h2 class="thread-title">Помощь и диагностика</h2>
-                                <div class="thread-meta">
-                                    <span class="thread-author">SupportTeam</span>
-                                    <span class="thread-date">10.04.2023</span>
-                                    <span class="thread-category">Поддержка</span>
-                                </div>
-                            </div>
-                            <div class="thread-stats">
-                                <div class="stat">
-                                    <div class="stat-value">230</div>
-                                    <div class="stat-label">Тем</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-value">3.5K</div>
-                                    <div class="stat-label">Сообщений</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thread-preview">
-                            <p>Если ваш компьютер начал вести себя странно — пишите сюда. Поможем с диагностикой и решением проблем.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sidebar">
-                <div class="sidebar-card" data-aos="fade-left" data-aos-delay="0">
-                    <h3 class="sidebar-title">Статистика форума</h3>
-                    <ul class="trending-topics">
-                        <li class="trending-topic">
-                            <span>Всего разделов</span>
-                            <div class="trending-meta">
-                                <span>12</span>
-                            </div>
-                        </li>
-                        <li class="trending-topic">
-                            <span>Всего тем</span>
-                            <div class="trending-meta">
-                                <span>4 762</span>
-                            </div>
-                        </li>
-                        <li class="trending-topic">
-                            <span>Всего сообщений</span>
-                            <div class="trending-meta">
-                                <span>19 215</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-card" data-aos="fade-left" data-aos-delay="100">
-                    <h3 class="sidebar-title">Правила раздела</h3>
-                    <p>Перед созданием новой темы обязательно ознакомьтесь с правилами форума и воспользуйтесь поиском — возможно, на ваш вопрос уже отвечали.</p>
-                </div>
-            </div>
-        </div>
+        <!-- ... здесь можешь вставить свои блоки форума ... -->
     </main>
 
-    <?php include __DIR__ . '/partials_footer_and_modals.php'; // см. ниже, если не используешь partial, просто скопируй footer+modals из index.php ?>
+    <!-- НИЗ (подвал + модалки + скрипты) можешь скопировать из index.php как есть -->
+    <?php include __DIR__ . '/partials_footer_and_modals.php'; ?>
 </body>
 </html>

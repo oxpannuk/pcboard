@@ -77,7 +77,7 @@ require __DIR__ . '/config/db.php';
     <main class="container">
         <div class="page-header" data-aos="fade-up">
             <div>
-                <h1 class="page-title">Обзоры комплектующих</h1>
+                <h1 class="page-title">Обзоры</h1>
                 <ul class="breadcrumb">
                     <li><a href="index.php">Главная</a></li>
                     <li>Обзоры</li>
@@ -85,89 +85,7 @@ require __DIR__ . '/config/db.php';
             </div>
         </div>
 
-        <div class="layout">
-            <div class="content">
-                <div class="threads-container">
-                    <div class="thread-card" data-aos="fade-up" data-aos-delay="0">
-                        <div class="thread-header">
-                            <div class="thread-info">
-                                <h2 class="thread-title">Обзор RTX 4070 Ti</h2>
-                                <div class="thread-meta">
-                                    <span class="thread-author">HardwareFan</span>
-                                    <span class="thread-date">02.06.2023</span>
-                                </div>
-                            </div>
-                            <div class="thread-stats">
-                                <div class="stat">
-                                    <div class="stat-value">9/10</div>
-                                    <div class="stat-label">Оценка</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thread-preview">
-                            <p>Проверяем производительность RTX 4070 Ti в 1440p и 4K, анализируем работу DLSS 3 и трассировки лучей.</p>
-                        </div>
-                    </div>
-
-                    <div class="thread-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="thread-header">
-                            <div class="thread-info">
-                                <h2 class="thread-title">Ryzen 7 7800X3D — король игр?</h2>
-                                <div class="thread-meta">
-                                    <span class="thread-author">AlexTech</span>
-                                    <span class="thread-date">10.06.2023</span>
-                                </div>
-                            </div>
-                            <div class="thread-stats">
-                                <div class="stat">
-                                    <div class="stat-value">9.5/10</div>
-                                    <div class="stat-label">Оценка</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thread-preview">
-                            <p>Тестируем новый игровой процессор AMD с 3D V-Cache и сравниваем его с флагманами Intel.</p>
-                        </div>
-                    </div>
-
-                    <div class="thread-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="thread-header">
-                            <div class="thread-info">
-                                <h2 class="thread-title">Лучшие SSD для игр</h2>
-                                <div class="thread-meta">
-                                    <span class="thread-author">PC Boards Team</span>
-                                    <span class="thread-date">18.06.2023</span>
-                                </div>
-                            </div>
-                            <div class="thread-stats">
-                                <div class="stat">
-                                    <div class="stat-value">8.5/10</div>
-                                    <div class="stat-label">Оценка</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thread-preview">
-                            <p>Подбираем оптимальные SSD по соотношению цена/скорость/надёжность для современных игр.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sidebar">
-                <div class="sidebar-card" data-aos="fade-left" data-aos-delay="0">
-                    <h3 class="sidebar-title">Фильтр обзоров</h3>
-                    <div class="filter-group">
-                        <span class="filter-label">Тип:</span>
-                        <select class="filter-select">
-                            <option>Все</option>
-                            <option>Процессоры</option>
-                            <option>Видеокарты</option>
-                            <option>Память и SSD</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- твой контент обзоров -->
     </main>
 
     <?php include __DIR__ . '/partials_footer_and_modals.php'; ?>

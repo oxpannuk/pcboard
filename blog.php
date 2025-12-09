@@ -85,68 +85,7 @@ require __DIR__ . '/config/db.php';
             </div>
         </div>
 
-        <div class="layout">
-            <div class="content">
-                <div class="threads-container">
-                    <div class="thread-card" data-aos="fade-up" data-aos-delay="0">
-                        <div class="thread-header">
-                            <div class="thread-info">
-                                <h2 class="thread-title">Обзор новинок видеокарт 2023</h2>
-                                <div class="thread-meta">
-                                    <span class="thread-author">PC Boards Team</span>
-                                    <span class="thread-date">01.05.2023</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thread-preview">
-                            <p>Рассматриваем ключевые модели видеокарт этого года, сравниваем производительность, энергопотребление и цену.</p>
-                        </div>
-                    </div>
-
-                    <div class="thread-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="thread-header">
-                            <div class="thread-info">
-                                <h2 class="thread-title">Как выбрать процессор для игр и работы</h2>
-                                <div class="thread-meta">
-                                    <span class="thread-author">AlexTech</span>
-                                    <span class="thread-date">15.05.2023</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thread-preview">
-                            <p>Разбираемся, на что смотреть при выборе CPU в 2023 году: количество ядер, частоты, кэш, поддержка технологий.</p>
-                        </div>
-                    </div>
-
-                    <div class="thread-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="thread-header">
-                            <div class="thread-info">
-                                <h2 class="thread-title">Мониторинг температуры и нагрузки</h2>
-                                <div class="thread-meta">
-                                    <span class="thread-author">TechSupport</span>
-                                    <span class="thread-date">22.05.2023</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="thread-preview">
-                            <p>Подбор утилит для мониторинга железа, настройка отображения, советы по интерпретации показаний.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sidebar">
-                <div class="sidebar-card" data-aos="fade-left" data-aos-delay="0">
-                    <h3 class="sidebar-title">Категории блога</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-microchip"></i> Железо</a></li>
-                        <li><a href="#"><i class="fas fa-gamepad"></i> Игры</a></li>
-                        <li><a href="#"><i class="fas fa-wrench"></i> Гайды</a></li>
-                        <li><a href="#"><i class="fas fa-bolt"></i> Оптимизация</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <!-- твой контент блога -->
     </main>
 
     <?php include __DIR__ . '/partials_footer_and_modals.php'; ?>
