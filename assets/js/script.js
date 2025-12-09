@@ -56,18 +56,64 @@ function initModals() {
     const registerForm = document.getElementById('registerForm');
 
     if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('Функционал входа будет реализован в бэкенде');
-            hideModals();
+            const username = document.getElementById('loginUsername')?.value.trim();
+            const password = document.getElementById('loginPassword')?.value;
+
+            try {
+                const res = await fetch('api/login.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: username, password: password })
+                });
+
+                if (!res.ok || !data.success) {
+                    alert(data.message || 'Ошибка авторизации');
+                    return;
+                }
+
+                // После успешной авторизации перезагружаем страницу,
+                // чтобы PHP подтянул сессию и корректно отрисовал шапку и модальное окно аккаунта
+                window.location.reload();
+            } catch (err) {
+                console.error(err);
+                alert('Ошибка соединения с сервером: ' + (err.message || err));
+            }
         });
     }
 
     if (registerForm) {
-        registerForm.addEventListener('submit', (e) => {
+        registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('Функционал регистрации будет реализован в бэкенде');
-            hideModals();
+            const username = document.getElementById('regUsername')?.value.trim();
+            const email = document.getElementById('regEmail')?.value.trim();
+            const password = document.getElementById('regPassword')?.value;
+
+            try {
+                const res = await fetch('api/register.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok || !data.success) {
+                    alert(data.message || 'Не удалось зарегистрироваться');
+                    return;
+                }
+
+                alert('Регистрация прошла успешно! Теперь вы можете войти.');
+                hideModals();
+            } catch (err) {
+                console.error(err);
+                alert('Ошибка соединения с сервером');
+            }
         });
     }
 

@@ -1,3 +1,6 @@
+<?php
+require __DIR__ . '/config/db.php';
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PC Boards — форум о компьютерах и комплектующих</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <!-- Жидкие элементы для эффекта глубины -->
@@ -24,27 +27,55 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a></li>
-                    <li><a href="forum.html"><i class="fas fa-comments"></i> Форум</a></li>
-                    <li><a href="sections.html"><i class="fas fa-th-large"></i> Разделы</a></li>
-                    <li><a href="blog.html"><i class="fas fa-newspaper"></i> Блог</a></li>
-                    <li><a href="reviews.html"><i class="fas fa-star"></i> Обзоры</a></li>
-                    <li><a href="help.html"><i class="fas fa-question-circle"></i> Помощь</a></li>
+                    <li><a href="index.php" class="active"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="forum.php"><i class="fas fa-comments"></i> Форум</a></li>
+                    <li><a href="sections.php"><i class="fas fa-th-large"></i> Разделы</a></li>
+                    <li><a href="blog.php"><i class="fas fa-newspaper"></i> Блог</a></li>
+                    <li><a href="reviews.php"><i class="fas fa-star"></i> Обзоры</a></li>
+                    <li><a href="help.php"><i class="fas fa-question-circle"></i> Помощь</a></li>
                 </ul>
             </nav>
             <div class="header-actions">
-                <button class="btn btn-outline" id="loginBtn">
-                    <i class="fas fa-sign-in-alt"></i> Вход
-                </button>
-                <button class="btn btn-primary pulse" id="registerBtn">
-                    <i class="fas fa-user-plus"></i> Регистрация
-                </button>
-                <div class="user-menu" style="display: none;">
-                    <div class="avatar">АК</div>
-                    <span>Алексей</span>
-                </div>
+                <?php if (!empty($_SESSION['user_id'])): ?>
+                    <!-- Пользователь авторизован: кнопки остаются в DOM для стилей/JS, но скрыты -->
+                    <button class="btn btn-outline" id="loginBtn" style="display: none;">
+                        <i class="fas fa-sign-in-alt"></i> Вход
+                    </button>
+                    <button class="btn btn-primary pulse" id="registerBtn" style="display: none;">
+                        <i class="fas fa-user-plus"></i> Регистрация
+                    </button>
+                    <div class="user-menu" id="userAccountTrigger" style="cursor: pointer;">
+                        <div class="avatar">
+                            <?php
+                            $name = $_SESSION['username'] ?? '';
+                            if ($name !== '') {
+                                $initials = mb_strtoupper(mb_substr($name, 0, 2, 'UTF-8'), 'UTF-8');
+                                echo htmlspecialchars($initials);
+                            } else {
+                                echo '??';
+                            }
+                            ?>
+                        </div>
+                        <span><?= htmlspecialchars($_SESSION['username'] ?? 'Пользователь') ?></span>
+                    </div>
+                <?php else: ?>
+                    <!-- Гость: показываем кнопки как раньше, user-menu спрятан -->
+                    <button class="btn btn-outline" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Вход
+                    </button>
+                    <button class="btn btn-primary pulse" id="registerBtn">
+                        <i class="fas fa-user-plus"></i> Регистрация
+                    </button>
+                    <div class="user-menu" id="userAccountTrigger" style="display: none; cursor: pointer;">
+                        <div class="avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span></span>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
+        
     </header>
 
     <!-- Основной контент -->
@@ -53,7 +84,7 @@
             <div>
                 <h1 class="page-title">PC Boards — Сообщество энтузиастов</h1>
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.php">Главная</a></li>
                 </ul>
             </div>
             <button class="btn btn-primary" id="newThreadBtn">
@@ -351,20 +382,20 @@
                 <div class="footer-section">
                     <h3>Разделы</h3>
                     <ul class="footer-links">
-                        <li><a href="sections.html"><i class="fas fa-microchip"></i> Процессоры</a></li>
-                        <li><a href="sections.html"><i class="fas fa-desktop"></i> Видеокарты</a></li>
-                        <li><a href="sections.html"><i class="fas fa-microchip"></i> Материнские платы</a></li>
-                        <li><a href="sections.html"><i class="fas fa-keyboard"></i> Периферия</a></li>
-                        <li><a href="sections.html"><i class="fas fa-tools"></i> Сборка ПК</a></li>
+                        <li><a href="sections.php"><i class="fas fa-microchip"></i> Процессоры</a></li>
+                        <li><a href="sections.php"><i class="fas fa-desktop"></i> Видеокарты</a></li>
+                        <li><a href="sections.php"><i class="fas fa-microchip"></i> Материнские платы</a></li>
+                        <li><a href="sections.php"><i class="fas fa-keyboard"></i> Периферия</a></li>
+                        <li><a href="sections.php"><i class="fas fa-tools"></i> Сборка ПК</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Помощь</h3>
                     <ul class="footer-links">
-                        <li><a href="help.html"><i class="fas fa-book"></i> Правила форума</a></li>
-                        <li><a href="help.html"><i class="fas fa-question-circle"></i> Часто задаваемые вопросы</a></li>
-                        <li><a href="help.html"><i class="fas fa-headset"></i> Техническая поддержка</a></li>
-                        <li><a href="help.html"><i class="fas fa-comment-dots"></i> Обратная связь</a></li>
+                        <li><a href="help.php"><i class="fas fa-book"></i> Правила форума</a></li>
+                        <li><a href="help.php"><i class="fas fa-question-circle"></i> Часто задаваемые вопросы</a></li>
+                        <li><a href="help.php"><i class="fas fa-headset"></i> Техническая поддержка</a></li>
+                        <li><a href="help.php"><i class="fas fa-comment-dots"></i> Обратная связь</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -442,7 +473,38 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Новое модальное окно аккаунта -->
+    <div class="modal" id="accountModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Аккаунт</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="account-info">
+                    <div class="account-row">
+                        <span class="account-label">Имя пользователя:</span>
+                        <span class="account-value" id="accountUsername">
+                            <?= htmlspecialchars($_SESSION['username'] ?? '—') ?>
+                        </span>
+                    </div>
+                    <div class="account-row">
+                        <span class="account-label">Email:</span>
+                        <span class="account-value" id="accountEmail">
+                            <?= htmlspecialchars($_SESSION['email'] ?? '—') ?>
+                        </span>
+                    </div>
+                </div>
+                <form action="logout.php" method="post" class="logout-form" style="margin-top: 20px;">
+                    <button type="submit" class="btn btn-outline btn-block">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
     <script>
         // Дополнительный JavaScript для главной страницы
         document.addEventListener('DOMContentLoaded', function() {
@@ -452,7 +514,7 @@
                 newThreadBtn.addEventListener('click', () => {
                     alert('Для создания новой темы необходимо войти в систему');
                     const loginModal = document.getElementById('loginModal');
-                    if (loginModal) showModal(loginModal);
+                    if (loginModal && typeof showModal === 'function') showModal(loginModal);
                 });
             }
 
@@ -471,6 +533,17 @@
                         toggle.classList.remove('expanded');
                     }
                 });
+            });
+
+            // Открытие модального окна аккаунта по клику на аватар/имя (делегирование)
+            document.addEventListener('click', (e) => {
+                const trigger = e.target.closest('#userAccountTrigger');
+                if (!trigger) return;
+
+                const accountModal = document.getElementById('accountModal');
+                if (accountModal && typeof showModal === 'function') {
+                    showModal(accountModal);
+                }
             });
         });
     </script>
