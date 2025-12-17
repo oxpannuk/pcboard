@@ -504,19 +504,70 @@ require __DIR__ . '/config/db.php';
         </div>
     </div>
 
+    <!-- Модальное окно создания новой темы -->
+    <div class="modal" id="createThreadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Создание новой темы</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="createThreadForm">
+                    <div class="form-group">
+                        <label class="form-label" for="threadTitle">Заголовок темы</label>
+                        <input type="text" id="threadTitle" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="threadCategory">Категория</label>
+                        <select id="threadCategory" class="form-control" required>
+                            <option value="">Выберите категорию</option>
+                            <option value="cpu">Процессоры</option>
+                            <option value="gpu">Видеокарты</option>
+                            <option value="motherboard">Материнские платы</option>
+                            <option value="ram">Память и накопители</option>
+                            <option value="periphery">Периферия</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="threadContent">Сообщение</label>
+                        <textarea id="threadContent" class="form-control" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-paper-plane"></i> Создать тему
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/js/script.js"></script>
     <script>
         // Дополнительный JavaScript для главной страницы
         document.addEventListener('DOMContentLoaded', function() {
-            // Обработка кнопки новой темы
-            const newThreadBtn = document.getElementById('newThreadBtn');
-            if (newThreadBtn) {
-                newThreadBtn.addEventListener('click', () => {
-                    alert('Для создания новой темы необходимо войти в систему');
-                    const loginModal = document.getElementById('loginModal');
-                    if (loginModal && typeof showModal === 'function') showModal(loginModal);
-                });
+// Кнопка "Новая тема"
+const newThreadBtn = document.getElementById('newThreadBtn');
+const isLoggedIn = <?= !empty($_SESSION['user_id']) ? 'true' : 'false' ?>;
+
+if (newThreadBtn) {
+    newThreadBtn.addEventListener('click', () => {
+        if (!isLoggedIn) {
+            // Гость — открываем окно входа
+            const loginModal = document.getElementById('loginModal');
+            if (loginModal && typeof showModal === 'function') {
+                showModal(loginModal);
             }
+        } else {
+            // Пользователь авторизован — открываем создание темы
+            const createThreadModal = document.getElementById('createThreadModal');
+            if (createThreadModal && typeof showModal === 'function') {
+                showModal(createThreadModal);
+            }
+        }
+    });
+}
 
             // Обработка переключателей ответов
             document.querySelectorAll('.answers-toggle').forEach(toggle => {
